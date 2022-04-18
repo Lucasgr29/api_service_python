@@ -10,6 +10,8 @@ Programa creado para administrar la base de datos de registro de personas
 '''
 
 
+from re import X
+from tkinter import Y
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
@@ -52,6 +54,22 @@ def report(limit=0, offset=0):
         json_result_list.append(json_result)
 
     return json_result_list
+
+
+
+def dashboard():
+    x=[]
+    y=[]
+
+    query = db.session.query(Persona)
+    for dato in query:
+        x.append(dato.id)
+        y.append(dato.age)
+
+    return x, y
+
+
+
 
 
 if __name__ == "__main__":
